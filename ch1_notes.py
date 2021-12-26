@@ -38,3 +38,31 @@ def all_pairs(l):
 
 for x, y in all_pairs(l):
     print(x, y)
+
+# Counter class
+from collections import Counter
+c = Counter('cowboy bebop')
+
+# defaultdict
+from collections import defaultdict
+g = defaultdict(list)
+g['paris'].append('marseille')
+
+import sys
+height, width = map(int, sys.stdin.readline().strip().split())
+import os
+l = list(map(int, os.read(0, 1000).strip().split()))
+
+from collections import defaultdict
+
+n_edges = int(input())
+g = defaultdict(dict)
+for _ in range(n_edges):
+    f, t, d = input().split()
+    g[f][t] = int(d)
+    g[t][f] = int(d)
+
+# stack -> list (append, pop)
+# queue
+# deque: appendleft, popleft, append, pop
+# heapq (min heap): heappush, heappop, heapify, heapreplace, nlargest, nsmallest, merge
