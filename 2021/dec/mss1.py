@@ -30,3 +30,5 @@ for r in range(100000):
 t2 = time.time()
 print(t2 - t1)
 print(res)
+
+# write code in function, then test repeated. 1/3 faster than repeat main code.

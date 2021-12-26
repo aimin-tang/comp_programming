@@ -20,3 +20,6 @@ for r in range(100000):
 t2 = time.time()
 print(t2 - t1)
 print(res)
+
+# use (result, i, j) in comparison is slower, since it often saves i, j
+# when not needed

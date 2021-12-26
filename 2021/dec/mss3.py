@@ -45,3 +45,7 @@ for r in range(100000):
 t2 = time.time()
 print(t2 - t1)
 print(res)
+
+# key point: check if arr[i] can contribute and by how much
+# return rsum, rstart, rend
+# for arr[i], it has tmpsum, tmpstart. (tmpend is i+1)
