@@ -1,6 +1,4 @@
 import itertools
-import math
-import random
 
 
 def parse_input(input_str):
@@ -11,6 +9,7 @@ def parse_input(input_str):
 
     return N, apples
 
+
 def solve():
     result = []
     for i in range(1, N // 2 + 1):
@@ -19,6 +18,7 @@ def solve():
             result.append((abs(sum(set1) - sum(set2)), set1, set2))
 
     print(min(result)[0])
+
 
 if __name__ == '__main__':
     input_str = """
@@ -29,8 +29,9 @@ if __name__ == '__main__':
     N, apples = parse_input(input_str)
     solve()
 
-
     # testing
     # print(N, apples)
     # print('============')
+
+# itertools.combinations(a_list, a_num)
 
