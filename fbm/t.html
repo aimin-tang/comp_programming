@@ -1,0 +1,47 @@
+mat = [ ['a', 'b', 'c', 'd', 'e'],
+['f', 'g', 'h', 'i', 'j'],
+['k', 'l', 'm', 'n', 'o'],
+['p', 'q', 'r', 's', 't'],
+['u', 'v', 'w', 'x', 'y']];
+
+pat = ['p', 'q', 'r', 's']
+
+def _transpose_matrix(mat):
+  # [ ['a', 'b', 'c'],
+  #   ['d', 'e', 'f'] ]
+  result = []
+  row = len(mat[0])
+  col = len(mat)
+
+  for r in range(row):
+    result[r] = []
+    for c in range(col):
+        result[r].append(mat[c][r])
+
+  return result
+
+def _pat_in_mat(mat, pat):
+  pat_s = ''.join(pat[row])
+
+  for row in mat:
+    row_s = ''.join(mat[row])
+
+    idx = row_s.index(pat_s)
+    if idx >= 0:
+      # found in this row
+      return True
+
+  # not found in any row
+  return False
+
+def find_orientation(mat, pat):
+  tmat = _transpose_matrix(mat)
+
+  if _pat_in_mat(mat, pat):
+    return 'H'
+
+  if _pat_in_mat(tmat, pat):
+    return 'V'
+
+  return 'N'
+
