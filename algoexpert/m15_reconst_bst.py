@@ -5,51 +5,30 @@ class BST:
         self.right = right
 
 
-def get_left(array, node_idx, end_idx):
-    if array[node_idx + 1] > array[node_idx]:
-        return None
-    else:
-        return node_idx + 1
-
-
-def get_right(array, node_idx, end_idx):
-    curr_idx = node_idx + 1
-
-    while curr_idx <= end_idx:
-        if array[curr_idx] >= array[node_idx]:
-            return curr_idx
+def insert_node(root, new_node):
+    curr_node = root
+    while True:
+        if curr_node.value > new_node.value:
+            if curr_node.left:
+                curr_node = curr_node.left
+            else:
+                curr_node.left = new_node
+                break
         else:
-            curr_idx += 1
-
-    return None
-
-
-def helper(array, node_idx, end_idx):
-    bst = BST(array[node_idx])
-
-    if end_idx <= node_idx:
-        return bst
-
-    l = get_left(array, node_idx, end_idx)
-    r = get_right(array, node_idx, end_idx)
-    if l and r:
-        bst.left = helper(array, l, r - 1)
-        bst.right = helper(array, r, end_idx)
-    elif l:
-        bst.left = helper(array, l, end_idx)
-    elif r:
-        bst.right = helper(array, r, end_idx)
-    else:
-        pass
-
-    return bst
+            if curr_node.right:
+                curr_node = curr_node.right
+            else:
+                curr_node.right = new_node
+                break
 
 
 def reconstructBst(preOrderTraversalValues):
-    # Write your code here.
-    # return helper(preOrderTraversalValues, 0, len(preOrderTraversalValues) - 1)
+    if not len(preOrderTraversalValues):
+        return None
 
-# preOrderTraversalValues = [10, 4, 2, 1, 3, 17, 19, 18]
-preOrderTraversalValues = [2, 0, 1, 4, 3, 3]
-r = reconstructBst(preOrderTraversalValues)
-print(r)
+    root = BST(preOrderTraversalValues[0])
+    for idx in range(1, len(preOrderTraversalValues)):
+        new_node = BST(preOrderTraversalValues[idx])
+        insert_node(root, new_node)
+
+    return root

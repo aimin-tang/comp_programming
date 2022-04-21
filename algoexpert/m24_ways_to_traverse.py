@@ -11,4 +11,8 @@ def numberOfWaysToTraverseGraph(width, height):
 
     return result[height - 1][width - 1]
 
-print(numberOfWaysToTraverseGraph(2, 3))
+print(numberOfWaysToTraverseGraph(4, 3))
+
+#  1   1   1   1
+#  1   2   3   4
+#  1   3   6   10
