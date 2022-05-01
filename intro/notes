@@ -1,0 +1,6 @@
+ch4_cses1621:
+  set: remove dups
+  Counter: count them
+ch4_cses1084:
+  cannot do array.sort().reverse()
+  for a list, either use idx to move, or pop() w/o idx
