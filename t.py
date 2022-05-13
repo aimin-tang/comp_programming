@@ -1,14 +1,20 @@
-def isValidSubsequence(array, sequence):
-    idx1 = 0
-    for num in sequence:
-        try:
-            idx1 = array.index(num, idx1) + 1
-        except ValueError:
+def get_next_idx(array, curr_idx):
+    step = array[curr_idx]
+    return (curr_idx + step) % len(array)
+
+
+def hasSingleCycle(array):
+    visited = [False for _ in range(len(array))]
+
+    curr_idx = 0
+    for i in range(len(array)):
+        next_idx = get_next_idx(array, curr_idx)
+        if visited[next_idx]:
             return False
+        visited[next_idx] = True
+        curr_idx = next_idx
 
-    return True
+    return curr_idx == 0
 
-array = [5, 1, 22, 25, 6, -1, 8, 10]
-sequence = [1, 6, 6, -1, 10]
-
-print(isValidSubsequence(array, sequence))
+array = [2, 2, -1]
+print(hasSingleCycle(array))
