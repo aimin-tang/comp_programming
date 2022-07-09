@@ -1,19 +1,32 @@
-def get_word_space_rest(string):
-    word, space = [], []
-    i = 1
-    while i < len(string):
-        if string[i] == ' ':
-            word
-
-
+def get_curr_end(string, start, is_space):
+    curr_ptr = start
+    while curr_ptr < len(string):
+        if is_space:
+            if string[curr_ptr] == ' ':
+                curr_ptr += 1
+            else:
+                return curr_ptr
+        else:
+            if string[curr_ptr] != ' ':
+                curr_ptr += 1
+            else:
+                return curr_ptr
+    return len(string)
 
 def reverseWordsInString(string):
-    word, space, rest = get_word_space_rest(string)
-    if space == None:
-        return word
-    else:
-        return reverseWordsInString(rest) + space + word
+    curr_start = 0
+    result_l = []
+    while curr_start < len(string):
+        if string[curr_start] == ' ':
+            curr_end = get_curr_end(string, curr_start+1, is_space=True)
+        else:
+            curr_end = get_curr_end(string, curr_start+1, is_space=False)
+        result_l.append(string[curr_start:curr_end])
+        curr_start = curr_end
+
+    return ''.join(reversed(result_l))
+
 
 
 string = "AlgoExpert is the best!"
-print(reverseWordsInString(string))
+print("-{}=".format(reverseWordsInString(string)))

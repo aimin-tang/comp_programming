@@ -47,6 +47,6 @@ def getMaxFreqDeviation(s):
     return result
 
 s = 'bbacccabab'
-s = 'aaaaa'
+# s = 'aaaaa'
 print(getMaxFreqDeviation(s))
 # print(get_count_l(s))
