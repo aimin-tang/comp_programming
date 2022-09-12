@@ -1,3 +1,4 @@
+import math
 from images import *
 
 class Kernel:
@@ -103,7 +104,7 @@ def apply_kernel(matrix, kernel):
 
     return pixel
 
-def filter(image, mode, kernel):
+def filter(image, mode, kernel, round=True):
     new_pixels = []
 
     for i in range(image.height):
@@ -115,7 +116,10 @@ def filter(image, mode, kernel):
         new_pixels.append(row)
 
     new_image = Image(new_pixels)
-    return round_and_clip_image(new_image)
+    if round:
+        return round_and_clip_image(new_image)
+    else:
+        return new_image
 
 def get_blur_kernel(n):
     weight = 1 / (n * n)
@@ -139,6 +143,26 @@ def sharpen(image, n):
 
     new_image = Image(new_pixels)
     return round_and_clip_image(new_image)
+
+def edges(image):
+    kx = Kernel([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
+    ky = Kernel([[-1, -2, -1], [0, 0, 0], [1, 2, 1]])
+    
+    edgex = filter(image, 'extend', kx, round=False)
+    edgey = filter(image, 'extend', ky, round=False)
+
+    pixels = []
+    for i in range(image.height):
+        row = []
+        for j in range(image.width):
+            pixelx = edgex.pixels[i][j]
+            pixely = edgey.pixels[i][j]
+            row.append(math.sqrt(pixelx * pixelx + pixely * pixely))
+        pixels.append(row)
+
+    new_image = Image(pixels)
+    return round_and_clip_image(new_image)
+
     
 if __name__ == '__main__':
     image1 = Image(i1_data)

@@ -114,3 +114,10 @@ def test_sharpen():
     image1 = Image(data)
     image2 = sharpen(image1, 3)
     assert image2.pixels == [[0, 2, 3], [4, 5, 7], [7, 8, 10], [10, 12, 13], [14, 16, 17]]
+
+def test_edges():
+    # not confirmed
+    data = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15]]
+    image1 = Image(data)
+    image2 = edges(image1)
+    assert image2.pixels == [[12, 14, 12], [24, 25, 24], [24, 25, 24], [24, 25, 24], [12, 14, 12]]
