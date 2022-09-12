@@ -80,16 +80,16 @@ def get_pixel(image, i, j, mode):
         else:
             raise RuntimeError(f'Unknown mode {mode}')
 
-def get_matrix(image, p_height, p_width, mode, kernel):
+def get_matrix(image, pi, pj, mode, kernel):
     matrix = []
-    adj_height = p_height - (kernel.height - 1) // 2
-    adj_width = p_width - (kernel.width - 1) // 2
+    adj_height = pi - (kernel.height - 1) // 2
+    adj_width = pj - (kernel.width - 1) // 2
 
-    for k_height in range(kernel.height):
+    for ki in range(kernel.height):
         row = []
-        for k_width in range(kernel.width):
-            i = adj_height + k_height
-            j = adj_width + k_width
+        for kj in range(kernel.width):
+            i = adj_height + ki
+            j = adj_width + kj
             row.append(get_pixel(image, i, j, mode))
         matrix.append(row)
 
