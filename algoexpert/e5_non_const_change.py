@@ -11,3 +11,8 @@ def nonConstructibleChange(coins):
 
 coins = [5, 7, 1, 1, 2, 3, 20]
 print(nonConstructibleChange(coins))
+
+# given a list of coins, find what amount can't be constructed.
+# eg: [1, 2, 5], can't construct 4.
+# sort first. increment psum from 0 with each coin.
+# easy pitfall: need to return psum + 1.

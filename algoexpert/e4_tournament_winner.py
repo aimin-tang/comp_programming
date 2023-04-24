@@ -36,3 +36,8 @@ competitions = [
 results = [0, 0, 1]
 
 print(tournamentWinner(competitions, results))
+
+# find winning team (only 1)
+# results of 0 means away team winning (second team). 
+# 1 means home team winning (first team).
+# handle tie breakers (1 or 2 leaders).

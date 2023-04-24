@@ -23,3 +23,5 @@ array = [5, 1, 22, 25, 6, -1, 8, 10]
 seq = [1, 6, -1, 10]
 
 print(isValidSubsequence(array, seq))
+
+# all numbers in seq are in array, in that order.
