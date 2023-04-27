@@ -1,9 +1,16 @@
-def caesarCipherEncryptor(string, key):
-    result = []
-    for l in string:
-        c = chr((ord(l) - ord('a') + key) % 26 + ord('a'))
-        result.append(c)
+def shift(c, key):
+    # shift c by key, handle wraps
+    if ord('a') <= ord(c) <= ord('z'):
+        new_ord = (ord(c) + key - ord('a')) % 26 + ord('a')
+    elif ord('A') <= ord(c) <= ord('Z'):
+        new_ord = (ord(c) + key - ord('A')) % 26 + ord('A')
+    else:
+        return c
 
-    return ''.join(result)
+    return chr(new_ord)
 
-print(caesarCipherEncryptor('abc', 3))
+def solve(s, key):
+    return "".join([shift(c, key) for c in s])
+
+print(solve('abc', 3))
+print(solve('xyz', 2))

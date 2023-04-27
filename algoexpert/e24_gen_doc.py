@@ -18,4 +18,7 @@ def generateDocument(characters, document):
 
     return True
 
+chars = "Bste!hetsi ogEAxpelrt x "
+document = "AlgoExpert is the Best!"
 
+print(generateDocument(chars, document))

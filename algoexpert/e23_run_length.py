@@ -1,27 +1,36 @@
-def runLengthEncoding(string):
-    count_char_l = []
+def get_partial(s, idx):
+    # get a string of identical letters
+    # "aaabb"
+    for i in range(idx + 1, len(s)):
+        if s[i] != s[idx]:
+            return s[idx] * (i - idx)
 
-    curr_char = string[0]
-    curr_count = 1
+    return s[idx] * (len(s) - idx)
+    
+def encode_partial(s):
+    # "AAA" => "3A"
+    count = len(s) // 9
+    remainder =len(s) % 9
+    result = ""
 
-    for i in range(1, len(string)):
-        if string[i] == curr_char:
-            curr_count += 1
-        else:
-            count_char_l.append((curr_count, curr_char))
-            curr_char = string[i]
-            curr_count = 1
+    for _ in range(count):
+        result += f"9{s[0]}"
 
-    count_char_l.append((curr_count, curr_char))
+    if remainder:
+        result += f"{remainder}{s[0]}"
 
-    result = []
+    return result
+            
+def runLengthEncoding(s):
+    result = ""
+    idx = 0
 
-    for count, char in count_char_l:
-        while count > 9:
-            result.append('9' + char)
-            count -= 9
-        result.append(str(count) + char)
+    while idx < len(s):
+        partial = get_partial(s, idx)
+        result += encode_partial(partial)
+        idx += len(partial)
 
-    return ''.join(result)
+    return result
 
 print(runLengthEncoding('AAAAAAAAAAAAABBCCCCDD'))
+# "9A4A2B4C2D"

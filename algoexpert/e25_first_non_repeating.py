@@ -11,3 +11,5 @@ def firstNonRepeatingCharacter(string):
 
     return -1
 
+print(firstNonRepeatingCharacter("abcdcaf"))
+# 1 - b is the first
