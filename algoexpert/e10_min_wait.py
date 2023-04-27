@@ -9,3 +9,8 @@ def minimumWaitingTime(queries):
         so_far += query
 
     return result
+
+queries = [3, 2, 1, 2, 6]
+result = minimumWaitingTime(queries)
+print(result)
+# result: 17

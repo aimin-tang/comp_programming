@@ -4,17 +4,17 @@ def better_num(n1, n2, target):
     return n2
 
 
-def findClosestValueInBst(tree, target):
+def solve(tree, target):
     if tree.value == target:
         return target
 
     best = tree.value
 
     if tree.left and target < tree.value:
-        l = findClosestValueInBst(tree.left, target)
+        l = solve(tree.left, target)
         best = better_num(l, best, target)
     if tree.right and target > tree.value:
-        r = findClosestValueInBst(tree.right, target)
+        r = solve(tree.right, target)
         best = better_num(r, best, target)
 
     return best
@@ -26,3 +26,19 @@ class BST:
         self.value = value
         self.left = None
         self.right = None
+
+def test_case_1():
+    root = BST(10)
+    root.left = BST(5)
+    root.left.left = BST(2)
+    root.left.left.left = BST(1)
+    root.left.right = BST(5)
+    root.right = BST(15)
+    root.right.left = BST(13)
+    root.right.left.right = BST(14)
+    root.right.right = BST(22)
+
+    return root
+
+root = test_case_1()
+print(solve(root, 12))

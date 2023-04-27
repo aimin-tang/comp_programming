@@ -13,3 +13,9 @@ def getNthFib(n):
 
     return f
 
+print(getNthFib(1))
+# 0
+print(getNthFib(2))
+# 1
+print(getNthFib(6))
+# 5

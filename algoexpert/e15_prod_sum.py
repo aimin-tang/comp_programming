@@ -17,3 +17,4 @@ def productSum(array):
 
 array = [5, 2, [7, -1], 3, [6, [-13, 8], 4]]
 print(productSum(array))
+# 12
