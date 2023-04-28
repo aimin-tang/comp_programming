@@ -1,24 +1,27 @@
-def better_num(n1, n2, target):
-    if abs(n1 - target) < abs(n2 - target):
-        return n1
-    return n2
+import math
 
+def get_best(v1, v2, key):
+    if abs(v1 - key) > abs(v2 - key):
+        return v2
+    else:
+        return v1
 
-def solve(tree, target):
-    if tree.value == target:
-        return target
+def solve_helper(node, key, best):
+    if not node:
+        return best
 
-    best = tree.value
+    best = get_best(node.value, best, key)
+    curr = node.value
 
-    if tree.left and target < tree.value:
-        l = solve(tree.left, target)
-        best = better_num(l, best, target)
-    if tree.right and target > tree.value:
-        r = solve(tree.right, target)
-        best = better_num(r, best, target)
+    if curr > key:
+        return solve_helper(node.left, key, best)
+    elif curr < key:
+        return solve_helper(node.right, key, best)
+    else:
+        return key
 
-    return best
-
+def solve(node, key):
+    return solve_helper(node, key, math.inf)
 
 # This is the class of the input tree. Do not edit.
 class BST:
@@ -39,6 +42,15 @@ def test_case_1():
     root.right.right = BST(22)
 
     return root
+    
+#  tree =  10
+#         /   \
+#        5     15
+#       / \    / \
+#      2   5  13  22
+#     /        \
+#    1         14
 
 root = test_case_1()
 print(solve(root, 12))
+# 13
