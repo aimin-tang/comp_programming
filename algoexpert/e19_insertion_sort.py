@@ -1,22 +1,35 @@
-def insert_into(array, idx):
-    # insert array[idx] into previous numbers
-    # assume previous numbers are sorted
-    i = 0
-    num = array[idx]
-    while i < idx:
-        if array[i] < num:
-            i += 1
+def handle_idx(array, idx):
+    # array[:idx] is already pre-sorted. now handle array[idx]
+    for i in range(idx - 1, -1, -1):
+        if array[i + 1] < array[i]:
+            array[i], array[i + 1] = array[i + 1], array[i]
         else:
-            array[i:idx + 1] = [num] + array[i:idx]
             break
 
-def insertionSort(array):
+def insertion_sort(array):
     if len(array) in [0, 1]:
         return array
 
-    for start in range(1, len(array)):
-        insert_into(array, start)
+    for idx in range(1, len(array)):
+        handle_idx(array, idx)
 
 array = [8, 5, 2, 9, 5, 6, 3]
-insertionSort(array)
+insertion_sort(array)
 print(array)
+# [2, 3, 5, 5, 6, 8, 9]
+# insertion sort: grow "pre-sorted" array.
+# [8, 5, 2, 9, 5, 6, 3]
+#  -
+# [5, 8, 2, 9, 5, 6, 3]
+#  ----
+# [2, 5, 8, 9, 5, 6, 3]
+#  -------
+# [5, 2, 8, 9, 5, 6, 3]
+#  ----------
+# [2, 5, 5, 8, 9, 6, 3]
+#  -------------
+# [2, 5, 5, 6, 8, 9, 3]
+#  ----------------
+# [2, 3, 5, 5, 6, 8, 9]
+#  -------------------
+# then second largest, etc ...
